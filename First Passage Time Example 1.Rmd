@@ -1,0 +1,39 @@
+---
+title: "First Passage time Example 1 R Notebook"
+output: First Passage Time Example 1 html_notebook
+---
+
+Example 2 (Revisited). Consider a system with 2 computers. The computer repair process has  3 states: 
+0 (no computer has failed); 
+1 (one computer has failed);
+2 (both computers have failed).
+
+# The transition probability Matrix P is
+vector<-array(c(0.6,0.8,1,0.3,0.2,0,0.1,0,0))
+P<-matrix(vector, nrow=3)
+print(P)
+
+# What is the probability that two computers will fail after n=4?
+# The answer is the last element of the a4 vector.
+a=array(c(1,0,0))
+P2=P%*%P
+P4=P2%*%P2
+a4=a%*%P4
+print(a4)
+
+# What is the probability that state 2 (both computer failed) will not be visited for the first time after at least n=4?
+# The answer is the last element of the v4 vector
+B<-P[1:2,1:2]
+print(B)
+e<-array(c(1,1))
+B2=B%*%B
+B4=B2%*%B2
+v4=B4%*%e
+print(v4)
+
+# What is the probability that state 2 (both computer failed) will not be visited for the first time after at least n=4?
+# The answer is the last element of the v5 vector
+v5=B%*%v4
+print(v5)
+
+
